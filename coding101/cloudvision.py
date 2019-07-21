@@ -45,7 +45,7 @@ def get_faces():
         files = {'file':open(filename,'rb')}
         req = requests.post(url, files=files)
         os.remove(filename)
-        print(req.text)
+        #print(req.text)
         reply = json.loads(req.text)
         if reply["status"] == True:
             return reply["faces"]
@@ -70,7 +70,7 @@ def get_labels():
     try:
         #url = "http://192.168.101.153:8081/client/ABCDE"
         url = host + '/label/' + client_id
-        print("url:", url)
+        #print("url:", url)
         files = {'file':open(filename,'rb')}
         req = requests.post(url, files=files)
         os.remove(filename)
@@ -86,8 +86,9 @@ def get_labels():
         print (err)
         return ""
 
-def examine_labels(labels):
+def examine_labels():
     #labels_dict = json.loads(labels)
+    labels = get_labels()
 
     results = []
     for label in labels:
